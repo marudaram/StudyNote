@@ -1,22 +1,18 @@
-// src/main/frontend/src/App.js
-
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import MainView from "./views/MainView";
+import {Route, Routes} from "react-router-dom";
+import WordNoteView from "./views/WordNoteView";
+import Header from "./components/layout/Header";
 
 function App() {
-  const [hello, setHello] = useState('')
 
-  useEffect(() => {
-    axios.get('/api/hello')
-        .then(response => setHello(response.data))
-        .catch(error => console.log(error))
-  }, []);
-
-  return (
-      <div>
-        백엔드에서 가져온 데이터입니다 : {hello}
-      </div>
-  );
+    return (
+        <Routes>
+            <Route element={<Header/>}>
+                <Route path="/" element={<MainView/>}/>
+                <Route path="/wordNote" element={<WordNoteView/>}/>
+            </Route>
+        </Routes>
+    );
 }
 
 export default App;
